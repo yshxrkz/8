@@ -8,7 +8,8 @@
   <meta name="description" content="Zaib Ali, Cyber Security student at Nottingham Trent University with experience in retail management, customer service, IT support and logistics.">
   <title>Zaib Ali - Portfolio</title>
 
-  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+  <link rel="icon" href="./assets/images/logo.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="./assets/css/style.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +27,21 @@
       <div class="sidebar-info">
 
         <figure class="avatar-box">
-          <img src="./assets/images/avatar.svg" alt="Zaib Ali" width="80">
+          <svg class="logo-mark" viewBox="0 0 64 64" width="80" height="80" role="img" aria-label="Zaib Ali - shark fin logo">
+            <defs>
+              <linearGradient id="logo-bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop stop-color="#16405e"/><stop offset="1" stop-color="#0b1c2e"/></linearGradient>
+              <linearGradient id="logo-fin" x1="20" y1="10" x2="48" y2="44" gradientUnits="userSpaceOnUse"><stop stop-color="#7cf0f8"/><stop offset="1" stop-color="#3aa8f0"/></linearGradient>
+              <clipPath id="logo-tile"><rect width="64" height="64" rx="16"/></clipPath>
+            </defs>
+            <g clip-path="url(#logo-tile)">
+              <rect width="64" height="64" fill="url(#logo-bg)"/>
+              <path class="logo-fin" d="M16 44C25 39 33 28 41 11C40 25 44 37 51 44Z" fill="url(#logo-fin)"/>
+              <g class="logo-waves">
+                <path d="M-8 44q8-6 16 0t16 0t16 0t16 0t16 0t16 0t16 0V70H-8Z" fill="#0f3d5e" fill-opacity=".92"/>
+                <path d="M-8 44q8-6 16 0t16 0t16 0t16 0t16 0t16 0t16 0" fill="none" stroke="#5ee6f2" stroke-width="2.2" stroke-linecap="round"/>
+              </g>
+            </g>
+          </svg>
         </figure>
 
         <div class="info-content">
@@ -147,7 +162,7 @@
 
             <li class="service-item">
               <div class="service-icon-box">
-                <img src="./assets/images/icon-design.svg" alt="" width="40">
+                <img src="./assets/images/icon-service.svg" alt="" aria-hidden="true" width="40">
               </div>
               <div class="service-content-box">
                 <h4 class="h4 service-item-title">Customer service &amp; supervision</h4>
@@ -156,7 +171,7 @@
             </li>
             <li class="service-item">
               <div class="service-icon-box">
-                <img src="./assets/images/icon-dev.svg" alt="" width="40">
+                <img src="./assets/images/icon-it.svg" alt="" width="40">
               </div>
               <div class="service-content-box">
                 <h4 class="h4 service-item-title">IT &amp; technical support</h4>
@@ -165,7 +180,7 @@
             </li>
             <li class="service-item">
               <div class="service-icon-box">
-                <img src="./assets/images/icon-app.svg" alt="" width="40">
+                <img src="./assets/images/icon-stock.svg" alt="" width="40">
               </div>
               <div class="service-content-box">
                 <h4 class="h4 service-item-title">Stock, admin &amp; Excel</h4>
@@ -174,7 +189,7 @@
             </li>
             <li class="service-item">
               <div class="service-icon-box">
-                <img src="./assets/images/icon-photo.svg" alt="" width="40">
+                <img src="./assets/images/icon-logistics.svg" alt="" width="40">
               </div>
               <div class="service-content-box">
                 <h4 class="h4 service-item-title">Logistics &amp; warehouse</h4>

@@ -51,3 +51,48 @@ for (let i = 0; i < navigationLinks.length; i++) {
     }
   });
 }
+
+
+// scroll reveal: soft fade/slide-in as elements enter the viewport
+const revealSelectors = [
+  ".about-text p", ".service-title", ".service-item",
+  ".timeline .title-wrapper", ".timeline-item",
+  ".skills-title", ".skills-list",
+  ".mapbox", ".form-title", ".form"
+];
+
+const revealTargets = document.querySelectorAll(revealSelectors.join(","));
+
+// stagger siblings a little (capped so long lists don't feel slow)
+const siblingCount = new Map();
+revealTargets.forEach(function (el) {
+  const key = el.parentElement;
+  const n = siblingCount.get(key) || 0;
+  siblingCount.set(key, n + 1);
+  el.classList.add("reveal");
+  el.style.setProperty("--reveal-delay", Math.min(n, 5) * 70 + "ms");
+});
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        el.classList.add("is-visible");
+        revealObserver.unobserve(el);
+
+        // once revealed, drop the helper classes so hover transitions are not delayed
+        const done = function () {
+          el.classList.remove("reveal", "is-visible");
+          el.style.removeProperty("--reveal-delay");
+        };
+        el.addEventListener("transitionend", done, { once: true });
+        setTimeout(done, 1500);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+  revealTargets.forEach(function (el) { revealObserver.observe(el); });
+} else {
+  revealTargets.forEach(function (el) { el.classList.add("is-visible"); });
+}
