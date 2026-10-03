@@ -96,3 +96,38 @@ if ("IntersectionObserver" in window) {
 } else {
   revealTargets.forEach(function (el) { el.classList.add("is-visible"); });
 }
+
+
+// cursor spotlight + gentle magnetic pull on cards
+const canHover = window.matchMedia("(hover: hover)").matches;
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (canHover) {
+  document.querySelectorAll(".service-item, .skills-item").forEach(function (card) {
+    const magnetic = !reduceMotion && card.classList.contains("service-item");
+    let frame = null;
+
+    card.addEventListener("pointermove", function (event) {
+      if (frame) return;
+      frame = requestAnimationFrame(function () {
+        frame = null;
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        card.style.setProperty("--mx", x + "px");
+        card.style.setProperty("--my", y + "px");
+
+        if (magnetic) {
+          // up to 4px towards the cursor
+          card.style.setProperty("--tx", ((x / rect.width - 0.5) * 8).toFixed(2) + "px");
+          card.style.setProperty("--ty", ((y / rect.height - 0.5) * 8).toFixed(2) + "px");
+        }
+      });
+    });
+
+    card.addEventListener("pointerleave", function () {
+      card.style.setProperty("--tx", "0px");
+      card.style.setProperty("--ty", "0px");
+    });
+  });
+}
